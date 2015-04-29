@@ -59,12 +59,12 @@ def run():
         TF.append(force(l));           #Add this time's total force to total force vector
 
 def graph():     #Graphs:
-    plot(T,TF, 'r');
+    plot(T,F, 'r');
     xlabel('Time (s)');
     ylabel('Fraction of myosin heads attached');
     show();
     
-    plot(T,F, 'r');
+    plot(T,TF, 'r');
     xlabel('Time (s)');
     ylabel('Total force exerted (pN)');
     show();
