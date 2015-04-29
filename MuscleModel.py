@@ -40,18 +40,17 @@ def run():
     for j in range(1,tEnd):                 #main loop. For every second...
         t = j*dt;                           #set time
         dx = vel(t)*dt;                     #set head movement
-        
-        if j>1000:                          #Starts contraction at 1/3 of simulation time
-            for i in range(1,n):                #for every head...
-                if(a[i] == 1):                  #if head is attached,
-                    x[i] = x[i]+dx;             #move the head.
-                    if (random.random() < beta*dt):   #If head detaches,
-                        a[i]=0;                 #Set head to detached
-                        x[i]=0;                 #Set movement to 0.
-                else:                               #If head was detached
-                    if (random.random() < alpha*dt):    #If head attaches,
-                        a[i]=1;                 #Set head to attached
-                        x[i]=dx;                 #Move head
+    
+        for i in range(1,n):                #for every head...
+            if(a[i] == 1):                  #if head is attached,
+                x[i] = x[i]+dx;             #move the head.
+                if (random.random() < beta*dt):   #If head detaches,
+                    a[i]=0;                 #Set head to detached
+                    x[i]=0;                 #Set movement to 0.
+            elif j>700 and j<(tEnd-700):                          #Else if head detached and inside stimulus region 1/3 of simulation time:                               #If head was detached
+                if (random.random() < alpha*dt):    #If head attaches,
+                    a[i]=1;                  #Set head to attached
+                    x[i]=dx;                 #Move head
         
         l = sum(x);                         #calculates movement in this iteration
         f = float(sum(a))/n;                #Calculates fraction of heads attached in this iteration
